@@ -1,7 +1,5 @@
-# Map
+# Qest-front-utils
 
-Basic component that iterates over object or array and provides render props:
+[formGenerator](./formGenerator/README) - Util that creates basic formik form from Object definition.
+[Map](./Map/README) - Basic component, that iterates over object or array and provides typed renderProps.
 
-- current item of the collection
-- key which can be either selected, or it automatically fallbacks to id or index
-- whole collection
