@@ -1,10 +1,13 @@
 {
   "name": "qest-front-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": "https://qest@dev.azure.com/qest/Qest/_git/Qest-front-utils",
   "author": "Lukáš Vaic <lukas.vaic@qest.cz>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
   "devDependencies": {
     "@types/antd": "^1.0.0",
     "@types/lodash": "^4.14.134",
