@@ -1,6 +1,6 @@
 {
   "name": "qest-front-utils",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "repository": "https://qest@dev.azure.com/qest/Qest/_git/Qest-front-utils",
   "author": "Lukáš Vaic <lukas.vaic@qest.cz>",
   "license": "MIT",
@@ -13,7 +13,6 @@
     "@types/react": "^16.8.19",
     "@types/typescript": "^2.0.0",
     "@types/yup": "^0.26.14",
-    "husky": "^2.4.0",
     "typescript": "^3.5.1"
   },
   "dependencies": {
