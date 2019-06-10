@@ -13,14 +13,13 @@ export const useCreateFormikParams = (
 } => {
     const initialValues: Record<string, FormField['initialValue']> = {};
     const validationSchemaShape: Record<string, Yup.Schema<{}>> = {};
-
     const renderReadyFields = useMemo(() => {
         return fields.map(({ initialValue, validation, name, component, ...rest }) => {
             const isUnregistredComponent = component && UNREGISTRED_COMPONENTS.includes(component);
 
-            if (isUnregistredComponent) {
+            if (!isUnregistredComponent) {
                 initialValues[name] = initialValue;
-                if (validation) {
+                if (!!validation) {
                     validationSchemaShape[name] = validation;
                 }
             }
@@ -28,7 +27,6 @@ export const useCreateFormikParams = (
             return { name, component, ...rest };
         });
     }, [fields]);
-
     const validationSchema = Yup.object().shape({
         ...validationSchemaShape,
     });

@@ -1,5 +1,10 @@
 import { Form } from '@jbuschke/formik-antd';
-import { FormikProps } from 'formik';
+import {
+    Field as FormikField,
+    FieldProps as FormikFieldProps,
+    FormikProps,
+    FormikValues,
+} from 'formik';
 import get from 'lodash/get';
 import React from 'react';
 
@@ -15,15 +20,13 @@ export interface FieldProps {
 
 const Field = (props: FieldProps) => {
     const {
-        field: { component, inputStyle, style, label, custom, propMapping, ...fieldProps },
+        field: { component, inputStyle, style, label, custom, propMapping, name, ...fieldProps },
         formProps,
     } = props;
 
     if (component === CUSTOM_COMPONENT_KEY && !!custom) {
         return custom(formProps);
     }
-
-    const mappedProps = propMapping && propMapping(props);
 
     const Component = get(
         formComponentMapping,
@@ -32,9 +35,24 @@ const Field = (props: FieldProps) => {
     );
 
     return (
-        <Form.Item {...fieldProps} style={style} label={label}>
-            <Component {...fieldProps} {...mappedProps} style={inputStyle} />
-        </Form.Item>
+        <FormikField name={name}>
+            {(formikFieldProps: FormikFieldProps<FormikValues>) => {
+                const mappedProps =
+                    propMapping && propMapping({ ...props.field, fieldProps: formikFieldProps });
+
+                return (
+                    <Form.Item {...fieldProps} style={style} label={label} name={name}>
+                        <Component
+                            {...mappedProps}
+                            {...fieldProps}
+                            fieldProps={formikFieldProps}
+                            name={name}
+                            style={inputStyle}
+                        />
+                    </Form.Item>
+                );
+            }}
+        </FormikField>
     );
 };
 
