@@ -5,7 +5,6 @@
   "repository": "https://qest@dev.azure.com/qest/Qest/_git/Qest-front-utils",
   "author": "Lukáš Vaic <lukas.vaic@qest.cz>",
   "license": "MIT",
-  "private": true,
   "devDependencies": {
     "@types/antd": "^1.0.0",
     "@types/lodash": "^4.14.134",
