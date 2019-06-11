@@ -24,7 +24,7 @@
     "noImplicitAny": true,
     "strict": true,
     "resolveJsonModule": true,
-    "outDir": "./dist",
+    "outDir": ".",
     "declaration": true
   },
   "exclude": ["node_modules"]
