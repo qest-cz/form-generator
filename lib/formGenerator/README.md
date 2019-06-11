@@ -1,6 +1,6 @@
 # formGenerator
 
-`name should be always unique per form, its used as key for each field`
+`dont use name, if you dont want the component to to register inside of the form`
 
 Small util that creates formik form from basic object definition.
 
@@ -42,7 +42,6 @@ in form definition you can, map props
 
 ```tsx
 {
-    name: 'button',
     component: 'button',
     children: 'Submit',
     htmlType: 'submit',

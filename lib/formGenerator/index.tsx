@@ -2,20 +2,19 @@ import { Form, Formik, FormikProps, FormikValues } from 'formik';
 import React from 'react';
 
 import Map from '../Map';
-import Field from './Field';
+import Row from './components/Row';
 import { FormDefinition } from './types';
-import { useCreateFormikParams } from './useCreateFormikParams';
+import { useTransformFields } from './useTransformFields';
 
-const formGenerator = ({ onSubmit, fields }: FormDefinition) => {
-  const { initialValues, validationSchema, renderReadyFields } = useCreateFormikParams(fields);
-  console.log("validationSchema: ", validationSchema);
+const formGenerator = ({ onSubmit, fields, gutter }: FormDefinition) => {
+  const { initialValues, validationSchema, rowSplitFields } = useTransformFields(fields, gutter);
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
       {(formProps: FormikProps<FormikValues>) => {
         return (
           <Form>
-            <Map collection={renderReadyFields} keySelector="name">
-              {(field, key) => <Field field={field} key={key} formProps={formProps} />}
+            <Map collection={rowSplitFields}>
+              {(row, key) => <Row {...row} key={key} formProps={formProps} />}
             </Map>
           </Form>
         );
