@@ -1,9 +1,9 @@
 import AntdCol from 'antd/lib/col';
 import AntdRow from 'antd/lib/row';
 import { FormikProps, FormikValues } from 'formik';
-import Map from 'lib/Map';
 import React from 'react';
 
+import Map from '../../../Map';
 import { FormRow } from '../../types';
 import Field from '../Field';
 

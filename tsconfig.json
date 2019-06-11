@@ -5,12 +5,12 @@
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
-    "module": "esNext",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "sourceMap": true,
     "jsx": "react",
-    "target": "esnext",
+    "target": "es5",
+    "module": "commonjs",
     "lib": [
       "dom",
       "es5",
@@ -21,11 +21,6 @@
     "skipLibCheck": true,
     "removeComments": true,
     "baseUrl": "./",
-    "paths": {
-      "lib/*": [
-        "lib/*"
-      ],
-    },
     "noImplicitAny": true,
     "strict": true,
     "resolveJsonModule": true,

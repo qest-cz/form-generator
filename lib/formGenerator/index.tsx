@@ -1,7 +1,7 @@
 import { Form, Formik, FormikProps, FormikValues } from 'formik';
-import Map from 'lib/Map';
 import React from 'react';
 
+import Map from '../Map';
 import Row from './components/Row';
 import { FormDefinition } from './types';
 import { useTransformFields } from './useTransformFields';

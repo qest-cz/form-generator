@@ -1,11 +1,11 @@
 {
   "name": "qest-front-utils",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "repository": "https://qest@dev.azure.com/qest/Qest/_git/Qest-front-utils",
   "author": "Lukáš Vaic <lukas.vaic@qest.cz>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p ./tsconfig.build.json",
     "linter:run": "yarn tslint --project ./tsconfig.json 'lib/**/*.{ts,tsx}'",
     "linter:fix": "yarn tslint --fix --project ./tsconfig.json 'lib/**/*.{ts,tsx}'",
     "prettier:run": "yarn prettier -c 'lib/**/*.{ts,tsx}'",
@@ -19,8 +19,6 @@
     }
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
     "@testing-library/react": "^8.0.1",
     "@types/antd": "^1.0.0",
     "@types/jest": "^24.0.13",
@@ -31,7 +29,6 @@
     "@types/react-test-renderer": "^16.8.1",
     "@types/typescript": "^2.0.0",
     "@types/yup": "^0.26.14",
-    "babel-plugin-module-resolver": "^3.2.0",
     "concurrently": "^4.1.0",
     "husky": "^2.4.0",
     "jest": "^24.8.0",
