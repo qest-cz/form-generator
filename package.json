@@ -1,9 +1,10 @@
 {
   "name": "qest-front-utils",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "repository": "https://qest@dev.azure.com/qest/Qest/_git/Qest-front-utils",
   "author": "Lukáš Vaic <lukas.vaic@qest.cz>",
   "license": "MIT",
+  "files": ["./dist"],
   "scripts": {
     "build": "tsc -p ./tsconfig.build.json",
     "linter:run": "yarn tslint --project ./tsconfig.json 'lib/**/*.{ts,tsx}'",
