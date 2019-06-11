@@ -6,16 +6,16 @@ import useGetValidationSchema from './useGetValidationSchema';
 import useRowSplitFields from './useRowSplitFields';
 
 export const useTransformFields = (
-  fields: FormField[],
-  formGlobalGutter?: number
+    fields: FormField[],
+    formGlobalGutter?: number,
 ): {
-  initialValues: Record<string, FormField["initialValue"]>;
-  validationSchema: Yup.Schema<{}>;
-  rowSplitFields: FormRow[];
+    initialValues: Record<string, FormField['initialValue']>;
+    validationSchema: Yup.Schema<{}>;
+    rowSplitFields: FormRow[];
 } => {
-  const initialValues = useGetIntialValues(fields);
-  const validationSchema = useGetValidationSchema(fields);
-  const rowSplitFields = useRowSplitFields(fields, formGlobalGutter);
+    const initialValues = useGetIntialValues(fields);
+    const validationSchema = useGetValidationSchema(fields);
+    const rowSplitFields = useRowSplitFields(fields, formGlobalGutter);
 
-  return { initialValues, validationSchema, rowSplitFields };
+    return { initialValues, validationSchema, rowSplitFields };
 };

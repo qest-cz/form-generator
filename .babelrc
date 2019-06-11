@@ -1,0 +1,14 @@
+{
+  "plugins": [
+        [ 
+            "module-resolver",
+            {
+                "root": ["."],
+                "alias": {
+                    "lib": "./lib",
+                    "hoc": "./src/app/hoc"
+                }
+            }
+        ]
+  ]
+}
