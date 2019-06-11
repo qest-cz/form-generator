@@ -20,7 +20,7 @@ describe('formGenerator - useGetInitialValues', () => {
 
         const { result } = renderHook(() => useGetIntialValues(fields));
 
-        expect(result.current).toEqual({ input: '', numberInput: '' });
+        expect(result.current).toEqual({ input: undefined, numberInput: undefined });
     });
 
     test('should propagate all initialValues', () => {

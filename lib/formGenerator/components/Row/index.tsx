@@ -15,7 +15,7 @@ const Row = ({ children, formProps, ...rowProps }: Props) => {
     return (
         <AntdRow {...rowProps}>
             <Map collection={children} keySelector="name">
-                {({ col, ...field }, key) => (
+                {({ col, rowStart, rowEnd, ...field }, key) => (
                     <AntdCol {...col} key={key}>
                         <Field field={field} formProps={formProps} />
                     </AntdCol>

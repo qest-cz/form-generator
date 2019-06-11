@@ -6,7 +6,7 @@ const useGetIntialValues = (fields: FormField[]): Record<string, FormField['init
     return useMemo(() => {
         const initialValues: Record<string, FormField['initialValue']> = {};
 
-        fields.map(({ initialValue = '', name }) => {
+        fields.map(({ initialValue, name }) => {
             if (name) {
                 initialValues[name] = initialValue;
             }
