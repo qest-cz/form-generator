@@ -33,6 +33,9 @@
     "husky": "^2.4.0",
     "jest": "^24.8.0",
     "prettier": "^1.18.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-hooks-testing-library": "^0.5.1",
     "react-test-renderer": "^16.8.6",
     "ts-jest": "^24.0.2",
     "tslint": "^5.17.0",
@@ -46,9 +49,6 @@
     "antd": "^3.19.2",
     "formik": "^1.5.7",
     "lodash": "^4.17.11",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-hooks-testing-library": "^0.5.1",
     "yup": "^0.27.0"
   }
 }
