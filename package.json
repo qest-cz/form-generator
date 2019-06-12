@@ -1,6 +1,6 @@
 {
   "name": "qest-front-utils",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "repository": "https://qest@dev.azure.com/qest/Qest/_git/Qest-front-utils",
   "author": "Lukáš Vaic <lukas.vaic@qest.cz>",
   "license": "MIT",
@@ -29,6 +29,7 @@
     "@types/react-test-renderer": "^16.8.1",
     "@types/typescript": "^2.0.0",
     "@types/yup": "^0.26.14",
+    "antd": "^3.19.3",
     "concurrently": "^4.1.0",
     "husky": "^2.4.0",
     "jest": "^24.8.0",
@@ -46,9 +47,13 @@
   },
   "dependencies": {
     "@jbuschke/formik-antd": "^1.0.0",
-    "antd": "^3.19.2",
     "formik": "^1.5.7",
     "lodash": "^4.17.11",
     "yup": "^0.27.0"
+  },
+  "peerDependencies": {
+    "antd": "^3.19.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   }
 }
