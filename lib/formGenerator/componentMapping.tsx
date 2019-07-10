@@ -21,6 +21,7 @@ import { FormField } from './types';
 
 const { Group: CheckBoxGroup } = Checkbox;
 const { Group: RadioGroup } = Radio;
+const { TextArea } = Input;
 
 export const formComponentMapping: Record<string, (params: FormField) => JSX.Element> = {
     autocomplete: (params: FormField) => <AutoComplete {...params} />,
@@ -29,8 +30,9 @@ export const formComponentMapping: Record<string, (params: FormField) => JSX.Ele
     checkbox: (params: FormField) => <Checkbox {...params} />,
     checkboxGroup: (params: FormField) => <CheckBoxGroup {...params} />,
     datePicker: (params: FormField) => <DatePicker {...params} />,
-    input: ({ form, ...params }: FormField) => <Input {...params} />,
-    inputNumber: ({ form, ...params }: FormField) => <InputNumber {...params} />,
+    input: (params: FormField) => <Input {...params} />,
+    textArea: (params: any) => <TextArea {...params} />,
+    inputNumber: (params: FormField) => <InputNumber {...params} />,
     radio: (params: any) => <Radio {...params} />,
     radioGroup: (params: FormField) => <RadioGroup {...params} />,
     rate: (params: FormField) => <Rate {...params} />,

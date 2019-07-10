@@ -69,6 +69,7 @@ type CombinedComponentProps = Partial<
         CheckboxGroupProps &
         DatePickerProps &
         InputProps &
+        // TextAreaProps &
         InputNumberProps &
         RadioProps &
         RateProps &
