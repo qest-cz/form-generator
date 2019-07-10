@@ -14,16 +14,18 @@ import { RenderReadyFormField } from '../../types';
 
 export interface FieldProps {
     field: RenderReadyFormField;
-    formProps: FormikProps<any>;
+    formProps?: FormikProps<any>;
+    className?: string;
 }
 
 const Field = (props: FieldProps) => {
     const {
         field: { component, inputStyle, style, label, custom, propMapping, name, ...fieldProps },
         formProps,
+        className,
     } = props;
 
-    if (component === CUSTOM_COMPONENT_KEY && !!custom) {
+    if (component === CUSTOM_COMPONENT_KEY && !!custom && formProps) {
         return custom(formProps);
     }
 
@@ -40,7 +42,13 @@ const Field = (props: FieldProps) => {
                     propMapping && propMapping({ ...props.field, fieldProps: formikFieldProps });
 
                 return (
-                    <Form.Item {...fieldProps} style={style} label={label} name={name}>
+                    <Form.Item
+                        {...fieldProps}
+                        style={style}
+                        label={label}
+                        name={name}
+                        className={className}
+                    >
                         <Component
                             {...mappedProps}
                             {...fieldProps}
