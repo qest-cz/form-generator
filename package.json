@@ -1,59 +1,66 @@
 {
-  "name": "qest-front-utils",
-  "version": "1.0.19",
-  "repository": "https://qest@dev.azure.com/qest/Qest/_git/Qest-front-utils",
-  "author": "Lukáš Vaic <lukas.vaic@qest.cz>",
-  "license": "MIT",
-  "scripts": {
-    "build": "tsc -p ./tsconfig.build.json",
-    "linter:run": "yarn tslint --project ./tsconfig.json 'lib/**/*.{ts,tsx}'",
-    "linter:fix": "yarn tslint --fix --project ./tsconfig.json 'lib/**/*.{ts,tsx}'",
-    "prettier:run": "yarn prettier -c 'lib/**/*.{ts,tsx}'",
-    "prettier:fix": "yarn prettier --write 'lib/**/*.{ts,tsx}'",
-    "test": "NODE_ENV=testing jest",
-    "test:watch": "NODE_ENV=testing jest --watch"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "concurrently \"yarn linter:run\" \"yarn prettier:run\" \"yarn test\""
+    "name": "@qest/form-generator",
+    "description": "Util that creates formik form from basic object definition.",
+    "displayName": "@qest/form-generator",
+    "version": "1.0.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/qest-cz/form-generator.git"
+    },
+    "author": "Lukáš Vaic <lukas.vaic@qest.cz>",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsc -p ./tsconfig.build.json",
+        "linter:run": "yarn tslint --project ./tsconfig.json 'src/**/*.{ts,tsx}'",
+        "linter:fix": "yarn tslint --fix --project ./tsconfig.json 'src/**/*.{ts,tsx}'",
+        "prettier:run": "yarn prettier -c 'src/**/*.{ts,tsx}'",
+        "prettier:fix": "yarn prettier --write 'src/**/*.{ts,tsx}'",
+        "test": "NODE_ENV=testing jest --passWithNoTests",
+        "test:watch": "NODE_ENV=testing jest --watch"
+    },
+    "husky": {
+        "hooks": {
+            "pre-push": "concurrently \"yarn linter:run\" \"yarn prettier:run\""
+        }
+    },
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "devDependencies": {
+        "@testing-library/react": "^8.0.1",
+        "@types/antd": "^1.0.0",
+        "@types/jest": "^24.0.13",
+        "@types/lodash": "^4.14.134",
+        "@types/prettier": "^1.16.4",
+        "@types/react": "^16.8.19",
+        "@types/react-dom": "^16.8.4",
+        "@types/react-test-renderer": "^16.8.1",
+        "@types/typescript": "^2.0.0",
+        "@types/yup": "^0.26.14",
+        "antd": "^3.19.3",
+        "concurrently": "^4.1.0",
+        "husky": "^2.4.0",
+        "jest": "^24.8.0",
+        "prettier": "^1.18.2",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "react-hooks-testing-library": "^0.5.1",
+        "react-test-renderer": "^16.8.6",
+        "ts-jest": "^24.0.2",
+        "tslint": "^5.17.0",
+        "tslint-config-prettier": "^1.18.0",
+        "tslint-plugin-prettier": "^2.0.1",
+        "tslint-react": "^4.0.0",
+        "typescript": "^3.5.1"
+    },
+    "dependencies": {
+        "@jbuschke/formik-antd": "^1.0.0",
+        "formik": "^1.5.7",
+        "lodash": "^4.17.11",
+        "yup": "^0.27.0"
+    },
+    "peerDependencies": {
+        "antd": "^3.19.3",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6"
     }
-  },
-  "devDependencies": {
-    "@testing-library/react": "^8.0.1",
-    "@types/antd": "^1.0.0",
-    "@types/jest": "^24.0.13",
-    "@types/lodash": "^4.14.134",
-    "@types/prettier": "^1.16.4",
-    "@types/react": "^16.8.19",
-    "@types/react-dom": "^16.8.4",
-    "@types/react-test-renderer": "^16.8.1",
-    "@types/typescript": "^2.0.0",
-    "@types/yup": "^0.26.14",
-    "antd": "^3.19.3",
-    "concurrently": "^4.1.0",
-    "husky": "^2.4.0",
-    "jest": "^24.8.0",
-    "prettier": "^1.18.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-hooks-testing-library": "^0.5.1",
-    "react-test-renderer": "^16.8.6",
-    "ts-jest": "^24.0.2",
-    "tslint": "^5.17.0",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.0.1",
-    "tslint-react": "^4.0.0",
-    "typescript": "^3.5.1"
-  },
-  "dependencies": {
-    "@jbuschke/formik-antd": "^1.0.0",
-    "formik": "^1.5.7",
-    "lodash": "^4.17.11",
-    "yup": "^0.27.0"
-  },
-  "peerDependencies": {
-    "antd": "^3.19.3",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
-  }
 }

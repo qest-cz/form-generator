@@ -3,7 +3,6 @@ import AntdRow from 'antd/lib/row';
 import { FormikProps, FormikValues } from 'formik';
 import React from 'react';
 
-import Map from '../../../Map';
 import { FormRow } from '../../types';
 import Field from '../Field';
 
@@ -14,13 +13,11 @@ interface Props extends FormRow {
 const Row = ({ children, formProps, ...rowProps }: Props) => {
     return (
         <AntdRow {...rowProps}>
-            <Map collection={children} keySelector="name">
-                {({ col, rowStart, rowEnd, ...field }, key) => (
-                    <AntdCol {...col} key={key}>
-                        <Field field={field} formProps={formProps} />
-                    </AntdCol>
-                )}
-            </Map>
+            {children.map(({ col, rowStart, rowEnd, ...field }, key) => (
+                <AntdCol {...col} key={field.name}>
+                    <Field field={field} formProps={formProps} />
+                </AntdCol>
+            ))}
         </AntdRow>
     );
 };

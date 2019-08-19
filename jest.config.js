@@ -8,6 +8,6 @@ module.exports = {
     },
     roots: ['./lib'],
     moduleNameMapper: {
-        '^lib(.*)$': '<rootDir>/lib/$1',
+        '^lib(.*)$': '<rootDir>/src/$1',
     },
 };
