@@ -1,6 +1,6 @@
 import { cleanup } from '@testing-library/react';
 import { renderHook } from 'react-hooks-testing-library';
-import * as Yup from 'yup';
+import { string } from 'yup';
 import useGetValidationSchema from '.';
 
 afterEach(async () => {
@@ -12,7 +12,7 @@ describe('formGenerator - useGetValidationSchema', () => {
         const fields = [
             {
                 name: 'input',
-                validation: Yup.string().required('required'),
+                validation: string().required('required'),
             },
             {
                 name: 'numberInput',
@@ -29,7 +29,7 @@ describe('formGenerator - useGetValidationSchema', () => {
         const fields = [
             {
                 name: 'input.nested',
-                validation: Yup.string().required('required'),
+                validation: string().required('required'),
             },
             {
                 name: 'numberInput.nested',
