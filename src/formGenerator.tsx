@@ -5,12 +5,22 @@ import Row from './components/Row';
 import { FormDefinition } from './types';
 import { useTransformFields } from './useTransformFields';
 
-const formGenerator = ({ onSubmit, fields, gutter }: FormDefinition) => {
-    const { initialValues, validationSchema, rowSplitFields } = useTransformFields(fields, gutter);
+const formGenerator = ({
+    onSubmit,
+    fields,
+    gutter,
+    validation = {},
+    initialValues = {},
+}: FormDefinition) => {
+    const {
+        initialValues: fieldInitialValues,
+        validationSchema: fieldValidationSchema,
+        rowSplitFields,
+    } = useTransformFields(fields, gutter);
     return (
         <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
+            initialValues={{ ...initialValues, ...fieldInitialValues }}
+            validationSchema={{ ...validation, ...fieldValidationSchema }}
             onSubmit={onSubmit}
         >
             {(formProps: FormikProps<FormikValues>) => {

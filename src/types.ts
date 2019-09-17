@@ -25,6 +25,8 @@ export interface FormDefinition {
     onSubmit: (values: FormikValues, formProps: FormikActions<FormikValues>) => Promise<any> | void;
     fields: FormField[];
     gutter?: number;
+    initialValues?: Record<string, any>;
+    validation?: Record<string, any>;
 }
 
 export interface FormRow extends RowProps {
