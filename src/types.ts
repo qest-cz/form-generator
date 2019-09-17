@@ -19,7 +19,7 @@ import { ColProps } from 'antd/lib/col';
 import { RadioProps } from 'antd/lib/radio';
 import { RowProps } from 'antd/lib/row';
 import { FormikActions, FormikProps, FormikValues } from 'formik';
-import * as Yup from 'yup';
+import { Schema } from 'yup';
 
 export interface FormDefinition {
     onSubmit: (values: FormikValues, formProps: FormikActions<FormikValues>) => Promise<any> | void;
@@ -33,7 +33,7 @@ export interface FormRow extends RowProps {
 }
 
 export interface FormField extends RenderReadyFormField {
-    validation?: Yup.Schema<{}>;
+    validation?: Schema<{}>;
     initialValue?: any;
     row?: RowProps;
     col?: ColProps;
