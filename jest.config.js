@@ -6,7 +6,7 @@ module.exports = {
             tsConfig: './tsconfig.json',
         },
     },
-    roots: ['./lib'],
+    roots: ['./src'],
     moduleNameMapper: {
         '^lib(.*)$': '<rootDir>/src/$1',
     },

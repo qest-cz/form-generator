@@ -1,7 +1,6 @@
 import { cleanup } from '@testing-library/react';
 import { renderHook } from 'react-hooks-testing-library';
 import * as Yup from 'yup';
-
 import useGetValidationSchema from '.';
 
 afterEach(async () => {
@@ -24,5 +23,22 @@ describe('formGenerator - useGetValidationSchema', () => {
 
         expect((result.current as any).fields.input).toBeTruthy();
         expect((result.current as any).fields.numberInput).toBeFalsy();
+    });
+
+    test('should only register components with validation property - nested property', () => {
+        const fields = [
+            {
+                name: 'input.nested',
+                validation: Yup.string().required('required'),
+            },
+            {
+                name: 'numberInput.nested',
+            },
+        ];
+
+        const { result } = renderHook(() => useGetValidationSchema(fields));
+
+        expect((result.current as any).fields.input.nested).toBeTruthy();
+        expect((result.current as any).fields.numberInput.nested).toBeFalsy();
     });
 });

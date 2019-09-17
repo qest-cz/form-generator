@@ -1,23 +1,16 @@
+import { set } from 'lodash';
 import { useMemo } from 'react';
-import * as Yup from 'yup';
-
+import { object, Schema } from 'yup';
 import { FormField } from '../../types';
 
-const useGetValidationSchema = (fields: FormField[]): Yup.Schema<{}> => {
+const useGetValidationSchema = (fields: FormField[]): Schema<{}> => {
     return useMemo(() => {
-        const validationSchemaShape: Record<string, Yup.Schema<{}>> = {};
+        const validationSchemaShape: Record<string, Schema<{}>> = fields.reduce(
+            (acc, { name, validation }) => set(acc, name, validation),
+            {},
+        );
 
-        fields.map(({ validation, name }) => {
-            if (!!validation && name) {
-                validationSchemaShape[name] = validation;
-            }
-        });
-
-        const validationSchema = Yup.object().shape({
-            ...validationSchemaShape,
-        });
-
-        return validationSchema;
+        return object().shape({ ...validationSchemaShape });
     }, [fields]);
 };
 
