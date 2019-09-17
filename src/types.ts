@@ -26,7 +26,6 @@ export interface FormDefinition {
     fields: FormField[];
     gutter?: number;
     initialValues?: Record<string, any>;
-    validation?: Record<string, any>;
 }
 
 export interface FormRow extends RowProps {
