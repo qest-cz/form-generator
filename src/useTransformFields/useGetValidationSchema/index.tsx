@@ -16,7 +16,7 @@ const transformObjectIntoShape = (val: Schema<any>): Schema<object> => {
     const remappedObj = Object.entries(val).reduce((acc, [key, value]) => {
         return {
             ...acc,
-            [key]: shouldReturn ? value : transformObjectIntoShape(value as any),
+            [key]: shouldReturn(value) ? value : transformObjectIntoShape(value),
         };
     }, {});
 
