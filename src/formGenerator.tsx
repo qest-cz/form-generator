@@ -5,7 +5,7 @@ import { FormField } from './types';
 import { useTransformFields } from './useTransformFields';
 import mergeDeep from './utils/mergeDeep';
 
-type FormDefinition = {
+export type FormDefinition = {
     onSubmit: (values: FormikValues, formProps: FormikActions<FormikValues>) => Promise<any> | void;
     fields: FormField[];
     gutter?: number;

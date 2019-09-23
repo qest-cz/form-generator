@@ -71,3 +71,5 @@ export interface SingleField {
     name: string;
     options?: any;
 }
+
+export * from './formGenerator';
