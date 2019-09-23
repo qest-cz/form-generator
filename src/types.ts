@@ -18,48 +18,28 @@ import { ButtonProps } from 'antd/lib/button';
 import { ColProps } from 'antd/lib/col';
 import { RadioProps } from 'antd/lib/radio';
 import { RowProps } from 'antd/lib/row';
-import { FormikActions, FormikProps, FormikValues } from 'formik';
+import { FormikProps } from 'formik';
 import { Schema } from 'yup';
-
-export interface FormDefinition {
-    onSubmit: (values: FormikValues, formProps: FormikActions<FormikValues>) => Promise<any> | void;
-    fields: FormField[];
-    gutter?: number;
-    initialValues?: Record<string, any>;
-}
+import { ComponentMappingPros } from './componentMapping';
 
 export interface FormRow extends RowProps {
     children: FormField[];
 }
 
-export interface FormField extends RenderReadyFormField {
+export interface FormField {
     validation?: Schema<{}>;
     initialValue?: any;
     row?: RowProps;
     col?: ColProps;
-}
-
-export interface RenderReadyFormField extends CombinedComponentProps, FieldItemProps {
     name: string;
-    component?: string;
-    inputStyle?: CombinedComponentProps['style'];
-    custom?: (formikProps: FormikProps<any>) => JSX.Element;
+    component?: keyof ComponentMappingPros;
     children?: any;
     options?: any;
     propMapping?: (fieldProps: FormField) => Record<string, string>;
     rowStart?: boolean;
     rowEnd?: boolean;
-    [dynamicProp: string]: any;
-}
-
-interface FieldItemProps {
     label?: string;
-}
-
-export interface RadioGroupOption {
-    label?: string;
-    value: string;
-    disabled?: boolean;
+    fieldProps: any;
 }
 
 type CombinedComponentProps = Partial<
@@ -81,3 +61,13 @@ type CombinedComponentProps = Partial<
         TransferProps &
         TreeSelectProps
 >;
+
+export interface SingleField {
+    inputStyle?: CombinedComponentProps['style'];
+    style?: CombinedComponentProps['style'];
+    label?: string;
+    custom?: (formikProps: FormikProps<any>) => JSX.Element;
+    propMapping?: (fieldProps: FormField) => { [key: string]: string };
+    name: string;
+    options?: any;
+}

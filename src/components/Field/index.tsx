@@ -1,61 +1,40 @@
 import { Form } from '@jbuschke/formik-antd';
-import {
-    Field as FormikField,
-    FieldProps as FormikFieldProps,
-    FormikProps,
-    FormikValues,
-} from 'formik';
-import get from 'lodash/get';
-import React from 'react';
+import { Field as FormikField, FieldProps as FormikFieldProps, FormikProps, FormikValues } from 'formik';
+import React, { useMemo } from 'react';
+import { ComponentMappingPros, formComponentMapping } from '../../componentMapping';
+import { CUSTOM_COMPONENT_KEY } from '../../constants';
+import { SingleField } from '../../types';
 
-import { formComponentMapping } from '../../componentMapping';
-import { CUSTOM_COMPONENT_KEY, DEFAULT_COMPONENT } from '../../constants';
-import { RenderReadyFormField } from '../../types';
+const { Item } = Form;
 
-export interface FieldProps {
-    field: RenderReadyFormField;
-    formProps?: FormikProps<any>;
-    className?: string;
+export interface FieldProps<T extends keyof ComponentMappingPros> {
+    field: SingleField;
+    formProps: FormikProps<FormikValues>;
+    componentProps: ComponentMappingPros[T];
 }
 
-const Field = (props: FieldProps) => {
-    const {
-        field: { component, inputStyle, style, label, custom, propMapping, name, ...fieldProps },
-        formProps,
-        className,
-    } = props;
+const Field = (component: keyof ComponentMappingPros) => ({
+    field,
+    formProps,
+    componentProps,
+}: FieldProps<typeof component>): JSX.Element => {
+    const { inputStyle, style, label, propMapping, name } = field;
+    const Component = useMemo(() => formComponentMapping[component], [component]);
 
-    if (component === CUSTOM_COMPONENT_KEY && !!custom && formProps) {
+    if (component === CUSTOM_COMPONENT_KEY) {
+        const custom = field.custom || componentProps.custom;
         return custom(formProps);
     }
-
-    const Component = get(
-        formComponentMapping,
-        component as string,
-        formComponentMapping[DEFAULT_COMPONENT],
-    );
 
     return (
         <FormikField name={name}>
             {(formikFieldProps: FormikFieldProps<FormikValues>) => {
-                const mappedProps =
-                    propMapping && propMapping({ ...props.field, fieldProps: formikFieldProps });
+                const mappedProps = propMapping && propMapping({ ...field, fieldProps: formikFieldProps });
 
                 return (
-                    <Form.Item
-                        {...fieldProps}
-                        style={style}
-                        label={label}
-                        name={name}
-                        className={className}
-                    >
-                        <Component
-                            {...mappedProps}
-                            {...fieldProps}
-                            name={name}
-                            style={inputStyle}
-                        />
-                    </Form.Item>
+                    <Item {...componentProps} style={style} label={label} name={name}>
+                        <Component {...componentProps} {...mappedProps} name={name} style={inputStyle} />
+                    </Item>
                 );
             }}
         </FormikField>

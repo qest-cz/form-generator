@@ -45,6 +45,5 @@ const mergeNew = (target: any, source: any): any => {
         }, {});
 };
 
-export const mergeDeep = <T extends object, U extends object>(target: T, ...rest: U[]): T & U =>
-    rest.reduce(mergeNew, target);
+export const mergeDeep = <T extends object, U extends object>(target: T, ...rest: U[]): T & U => rest.reduce(mergeNew, target);
 export default mergeDeep;

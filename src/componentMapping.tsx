@@ -1,45 +1,88 @@
 import {
     AutoComplete,
+    AutoCompleteProps,
     Cascader,
+    CascaderProps,
     Checkbox,
+    CheckboxGroupProps,
+    CheckboxProps,
     DatePicker,
+    DatePickerProps,
     Input,
     InputNumber,
+    InputNumberProps,
+    InputProps,
     Radio,
+    RadioGroupProps,
     Rate,
+    RateProps,
     Slider,
+    SliderProps,
     Switch,
+    SwitchProps,
+    TextAreaProps,
     TimePicker,
+    TimePickerProps,
     Transfer,
+    TransferProps,
     TreeSelect,
+    TreeSelectProps,
 } from '@jbuschke/formik-antd';
-import Button from 'antd/lib/button';
+import Button, { ButtonProps } from 'antd/lib/button';
+import { FormikProps } from 'formik';
 import React from 'react';
-
-import Select from './components/Select';
+import Select, { Props as SelectProps } from './components/Select';
 import { FormField } from './types';
 
 const { Group: CheckBoxGroup } = Checkbox;
 const { Group: RadioGroup } = Radio;
 const { TextArea } = Input;
 
-export const formComponentMapping: Record<string, (params: FormField) => JSX.Element> = {
-    autocomplete: (params: FormField) => <AutoComplete {...params} />,
-    button: (params: any) => <Button {...params} />,
-    cascader: (params: any) => <Cascader {...params} />,
-    checkbox: (params: FormField) => <Checkbox {...params} />,
-    checkboxGroup: (params: FormField) => <CheckBoxGroup {...params} />,
-    datePicker: (params: FormField) => <DatePicker {...params} />,
-    input: (params: FormField) => <Input {...params} />,
-    textArea: (params: any) => <TextArea {...params} />,
-    inputNumber: (params: FormField) => <InputNumber {...params} />,
-    radio: (params: any) => <Radio {...params} />,
-    radioGroup: (params: FormField) => <RadioGroup {...params} />,
-    rate: (params: FormField) => <Rate {...params} />,
-    select: (params: any) => <Select {...params} />,
-    slider: (params: FormField) => <Slider {...params} />,
-    switch: (params: FormField) => <Switch {...params} />,
-    timePicker: (params: FormField) => <TimePicker {...params} />,
-    transfer: (params: any) => <Transfer {...params} />,
-    treeSelect: (params: any) => <TreeSelect {...params} />,
+export interface FormComponentMappingPros extends ComponentMappingPros, FormField {}
+
+export interface ComponentMappingPros {
+    autocomplete: AutoCompleteProps;
+    button: ButtonProps;
+    cascader: CascaderProps;
+    checkbox: CheckboxProps;
+    checkboxGroup: CheckboxGroupProps;
+    datePicker: DatePickerProps;
+    input: InputProps;
+    textArea: TextAreaProps;
+    inputNumber: InputNumberProps;
+    radio: RadioGroupProps;
+    radioGroup: RadioGroupProps;
+    rate: RateProps;
+    select: SelectProps;
+    slider: SliderProps;
+    switch: SwitchProps;
+    timePicker: TimePickerProps;
+    transfer: TransferProps;
+    treeSelect: TreeSelectProps;
+    custom: (formikProps: FormikProps<any>) => JSX.Element;
+}
+
+type ComponentFunction = { [K in keyof ComponentMappingPros]: (params: ComponentMappingPros[K]) => JSX.Element };
+
+export const formComponentMapping: ComponentFunction = {
+    // tslint:disable:arrow-parens
+    autocomplete: params => <AutoComplete {...params} />,
+    button: params => <Button {...params} />,
+    cascader: params => <Cascader {...params} />,
+    checkbox: params => <Checkbox {...params} />,
+    checkboxGroup: params => <CheckBoxGroup {...params} />,
+    datePicker: params => <DatePicker {...params} />,
+    input: params => <Input {...params} />,
+    textArea: params => <TextArea {...params} />,
+    inputNumber: params => <InputNumber {...params} />,
+    radio: params => <Radio {...params} />,
+    radioGroup: params => <RadioGroup {...params} />,
+    rate: params => <Rate {...params} />,
+    select: params => <Select {...params} />,
+    slider: params => <Slider {...params} />,
+    switch: params => <Switch {...params} />,
+    timePicker: params => <TimePicker {...params} />,
+    transfer: params => <Transfer {...params} />,
+    treeSelect: params => <TreeSelect {...params} />,
+    custom: params => <></>,
 };
