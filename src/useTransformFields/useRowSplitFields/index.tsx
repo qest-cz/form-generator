@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { DEFAULT_FORM_GUTTER } from '../../constants';
-import { FormField, FormRow } from '../../types';
+import { FieldDefinition, FormRow } from '../../types';
 
-type FunctionDefinition = (fields: FormField[], formGlobalGutter?: number) => FormRow[];
+type FunctionDefinition = (fields: FieldDefinition[], formGlobalGutter?: number) => FormRow[];
 
 const useRowSplitFields: FunctionDefinition = (fields, formGlobalGutter = DEFAULT_FORM_GUTTER) => {
     return useMemo(() => {
@@ -17,7 +17,7 @@ const useRowSplitFields: FunctionDefinition = (fields, formGlobalGutter = DEFAUL
             openRow = false;
         };
 
-        const addFieldToRow = (field: FormField) => {
+        const addFieldToRow = (field: FieldDefinition) => {
             const { row } = field;
 
             currentRow = {

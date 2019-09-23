@@ -1,28 +1,22 @@
 import { Form } from '@jbuschke/formik-antd';
 import { Field as FormikField, FieldProps as FormikFieldProps, FormikProps, FormikValues } from 'formik';
 import React, { useMemo } from 'react';
-import { ComponentMappingPros, formComponentMapping } from '../../componentMapping';
-import { CUSTOM_COMPONENT_KEY } from '../../constants';
-import { SingleField } from '../../types';
+import { FieldDefinition } from 'src/types';
+import { formComponentMapping } from '../../componentMapping';
+import { CUSTOM_COMPONENT_KEY, DEFAULT_COMPONENT } from '../../constants';
 
 const { Item } = Form;
 
-export interface FieldProps<T extends keyof ComponentMappingPros> {
-    field: SingleField;
+export interface FieldProps {
+    field: FieldDefinition;
     formProps: FormikProps<FormikValues>;
-    componentProps: ComponentMappingPros[T];
 }
 
-const Field = (component: keyof ComponentMappingPros) => ({
-    field,
-    formProps,
-    componentProps,
-}: FieldProps<typeof component>): JSX.Element => {
-    const { inputStyle, style, label, propMapping, name } = field;
-    const Component = useMemo(() => formComponentMapping[component], [component]);
+const Field = ({ field, formProps }: FieldProps): JSX.Element => {
+    const { inputStyle, style, label, propMapping, component, custom, fieldProps, name, ...componentProps } = field;
+    const Component = useMemo(() => formComponentMapping[component === undefined ? DEFAULT_COMPONENT : component], [component]);
 
-    if (component === CUSTOM_COMPONENT_KEY) {
-        const custom = field.custom || componentProps.custom;
+    if (component === CUSTOM_COMPONENT_KEY && !!custom) {
         return custom(formProps);
     }
 
@@ -32,8 +26,8 @@ const Field = (component: keyof ComponentMappingPros) => ({
                 const mappedProps = propMapping && propMapping({ ...field, fieldProps: formikFieldProps });
 
                 return (
-                    <Item {...componentProps} style={style} label={label} name={name}>
-                        <Component {...componentProps} {...mappedProps} name={name} style={inputStyle} />
+                    <Item {...fieldProps} {...componentProps} style={style} label={label} name={name}>
+                        <Component {...fieldProps} {...componentProps} {...mappedProps} name={name} style={inputStyle} />
                     </Item>
                 );
             }}

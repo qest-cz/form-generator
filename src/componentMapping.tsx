@@ -32,13 +32,11 @@ import Button, { ButtonProps } from 'antd/lib/button';
 import { FormikProps } from 'formik';
 import React from 'react';
 import Select, { Props as SelectProps } from './components/Select';
-import { FormField } from './types';
+import TextDivider, { Props as TextDividerProps } from './components/TextDivider';
 
 const { Group: CheckBoxGroup } = Checkbox;
 const { Group: RadioGroup } = Radio;
 const { TextArea } = Input;
-
-export interface FormComponentMappingPros extends ComponentMappingPros, FormField {}
 
 export interface ComponentMappingPros {
     autocomplete: AutoCompleteProps;
@@ -58,6 +56,7 @@ export interface ComponentMappingPros {
     switch: SwitchProps;
     timePicker: TimePickerProps;
     transfer: TransferProps;
+    textDivider: TextDividerProps;
     treeSelect: TreeSelectProps;
     custom: (formikProps: FormikProps<any>) => JSX.Element;
 }
@@ -65,7 +64,6 @@ export interface ComponentMappingPros {
 type ComponentFunction = { [K in keyof ComponentMappingPros]: (params: ComponentMappingPros[K]) => JSX.Element };
 
 export const formComponentMapping: ComponentFunction = {
-    // tslint:disable:arrow-parens
     autocomplete: params => <AutoComplete {...params} />,
     button: params => <Button {...params} />,
     cascader: params => <Cascader {...params} />,
@@ -84,5 +82,8 @@ export const formComponentMapping: ComponentFunction = {
     timePicker: params => <TimePicker {...params} />,
     transfer: params => <Transfer {...params} />,
     treeSelect: params => <TreeSelect {...params} />,
+    textDivider: params => <TextDivider {...params} />,
     custom: params => <></>,
 };
+
+export default formComponentMapping;
