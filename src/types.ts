@@ -10,6 +10,7 @@ import {
     SelectProps,
     SliderProps,
     SwitchProps,
+    TextAreaProps,
     TimePickerProps,
     TransferProps,
     TreeSelectProps,
@@ -18,48 +19,65 @@ import { ButtonProps } from 'antd/lib/button';
 import { ColProps } from 'antd/lib/col';
 import { RadioProps } from 'antd/lib/radio';
 import { RowProps } from 'antd/lib/row';
-import { FormikActions, FormikProps, FormikValues } from 'formik';
+import { FormikProps } from 'formik';
 import { Schema } from 'yup';
+import { ComponentMappingPros } from './componentMapping';
+import { DEFAULT_COMPONENT } from './constants';
 
-export interface FormDefinition {
-    onSubmit: (values: FormikValues, formProps: FormikActions<FormikValues>) => Promise<any> | void;
-    fields: FormField[];
-    gutter?: number;
-    initialValues?: Record<string, any>;
-}
+declare const RowAligns: ['top', 'middle', 'bottom'];
+declare const RowJustify: ['start', 'end', 'center', 'space-around', 'space-between'];
+declare type Breakpoint = 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
 
-export interface FormRow extends RowProps {
-    children: FormField[];
-}
-
-export interface FormField extends RenderReadyFormField {
-    validation?: Schema<{}>;
+interface CommonFieldProps {
+    rowStart?: boolean;
+    rowEnd?: boolean;
+    inputStyle?: CombinedComponentProps['style'];
+    style?: CombinedComponentProps['style'];
+    label?: string;
+    validation?: Schema<any>;
     initialValue?: any;
     row?: RowProps;
     col?: ColProps;
-}
-
-export interface RenderReadyFormField extends CombinedComponentProps, FieldItemProps {
-    name: string;
-    component?: string;
-    inputStyle?: CombinedComponentProps['style'];
-    custom?: (formikProps: FormikProps<any>) => JSX.Element;
     children?: any;
-    options?: any;
-    propMapping?: (fieldProps: FormField) => Record<string, string>;
-    rowStart?: boolean;
-    rowEnd?: boolean;
-    [dynamicProp: string]: any;
+    custom?: (formikProps: FormikProps<any>) => JSX.Element;
+    propMapping?: any;
+    name: string;
+
+    fieldProps?: {
+        name?: string;
+    };
 }
 
-interface FieldItemProps {
-    label?: string;
-}
+export type FieldDefinition = (
+    | { component: 'autocomplete'; fieldProps?: ComponentMappingPros['autocomplete'] }
+    | { component: 'button'; fieldProps?: ComponentMappingPros['button'] }
+    | { component: 'cascader'; fieldProps?: ComponentMappingPros['cascader'] }
+    | { component: 'checkbox'; fieldProps?: ComponentMappingPros['checkbox'] }
+    | { component: 'checkboxGroup'; fieldProps?: ComponentMappingPros['checkboxGroup'] }
+    | { component: 'datePicker'; fieldProps?: ComponentMappingPros['datePicker'] }
+    | { component: 'input'; fieldProps?: ComponentMappingPros['input'] }
+    | { component: 'textArea'; fieldProps?: ComponentMappingPros['textArea'] }
+    | { component: 'inputNumber'; fieldProps?: ComponentMappingPros['inputNumber'] }
+    | { component: 'radio'; fieldProps?: ComponentMappingPros['radio'] }
+    | { component: 'radioGroup'; fieldProps?: ComponentMappingPros['radioGroup'] }
+    | { component: 'rate'; fieldProps?: ComponentMappingPros['rate'] }
+    | { component: 'select'; fieldProps?: ComponentMappingPros['select'] }
+    | { component: 'slider'; fieldProps?: ComponentMappingPros['slider'] }
+    | { component: 'switch'; fieldProps?: ComponentMappingPros['switch'] }
+    | { component: 'timePicker'; fieldProps?: ComponentMappingPros['timePicker'] }
+    | { component: 'transfer'; fieldProps?: ComponentMappingPros['transfer'] }
+    | { component: 'treeSelect'; fieldProps?: ComponentMappingPros['treeSelect'] }
+    | { component: 'textDivider'; fieldProps?: ComponentMappingPros['textDivider'] }
+    | { component: 'custom'; fieldProps?: ComponentMappingPros['custom'] }
+    | { component?: undefined; fieldProps?: ComponentMappingPros[typeof DEFAULT_COMPONENT] }) &
+    CommonFieldProps;
 
-export interface RadioGroupOption {
-    label?: string;
-    value: string;
-    disabled?: boolean;
+export interface FormRow {
+    children: FieldDefinition[];
+    gutter?: number | Partial<Record<Breakpoint, number>>;
+    type?: 'flex';
+    align?: (typeof RowAligns)[number];
+    justify?: (typeof RowJustify)[number];
 }
 
 type CombinedComponentProps = Partial<
@@ -70,7 +88,7 @@ type CombinedComponentProps = Partial<
         CheckboxGroupProps &
         DatePickerProps &
         InputProps &
-        // TextAreaProps &
+        TextAreaProps &
         InputNumberProps &
         RadioProps &
         RateProps &
@@ -81,3 +99,5 @@ type CombinedComponentProps = Partial<
         TransferProps &
         TreeSelectProps
 >;
+
+export * from './formGenerator';

@@ -1,32 +1,28 @@
-import { Form, Formik, FormikProps, FormikValues } from 'formik';
+import { Form, Formik, FormikActions, FormikProps, FormikValues } from 'formik';
 import React from 'react';
 import Row from './components/Row';
-import { FormDefinition } from './types';
+import { FieldDefinition } from './types';
 import { useTransformFields } from './useTransformFields';
-import mergeDeep from './utils/mergeDeep';
 
-const formGenerator = ({ onSubmit, fields, gutter, initialValues = {} }: FormDefinition) => {
-    const {
-        initialValues: fieldInitialValues,
-        validationSchema: fieldValidationSchema,
-        rowSplitFields,
-    } = useTransformFields(fields, gutter);
+export type FormDefinition = {
+    onSubmit: (values: FormikValues, formProps: FormikActions<FormikValues>) => Promise<any> | void;
+    fields: FieldDefinition[];
+    gutter?: number;
+    initialValues?: { [key: string]: any };
+};
+
+const formGenerator = ({ onSubmit, fields, gutter, initialValues = {} }: FormDefinition): JSX.Element => {
+    const transformedFields = useTransformFields(fields.filter(Boolean), initialValues, gutter);
 
     return (
-        <Formik
-            initialValues={mergeDeep(initialValues, fieldInitialValues)}
-            validationSchema={fieldValidationSchema}
-            onSubmit={onSubmit}
-        >
-            {(formProps: FormikProps<FormikValues>) => {
-                return (
-                    <Form>
-                        {rowSplitFields.map((row, index) => (
-                            <Row {...row} key={index} formProps={formProps} />
-                        ))}
-                    </Form>
-                );
-            }}
+        <Formik initialValues={transformedFields.initialValues} validationSchema={transformedFields.validationSchema} onSubmit={onSubmit}>
+            {(formProps: FormikProps<FormikValues>) => (
+                <Form>
+                    {transformedFields.rowSplitFields.map((row, index) => (
+                        <Row {...row} key={index} formProps={formProps} />
+                    ))}
+                </Form>
+            )}
         </Formik>
     );
 };

@@ -26,10 +26,7 @@ describe('formGenerator - useRowSplitFields', () => {
 
         expect(result.current).toEqual([
             {
-                children: [
-                    { name: 'input', rowStart: true },
-                    { name: 'numberInput', rowEnd: true },
-                ],
+                children: [{ name: 'input', rowStart: true }, { name: 'numberInput', rowEnd: true }],
                 gutter: GUTTER_SIZE,
             },
         ]);
@@ -90,11 +87,7 @@ describe('formGenerator - useRowSplitFields', () => {
 
         expect(result.current).toEqual([
             {
-                children: [
-                    { name: 'input', rowStart: true },
-                    { name: 'input2', rowStart: true },
-                    { name: 'input3', rowStart: true },
-                ],
+                children: [{ name: 'input', rowStart: true }, { name: 'input2', rowStart: true }, { name: 'input3', rowStart: true }],
                 gutter: GUTTER_SIZE,
             },
         ]);
@@ -119,11 +112,7 @@ describe('formGenerator - useRowSplitFields', () => {
 
         expect(result.current).toEqual([
             {
-                children: [
-                    { name: 'input', rowStart: true },
-                    { name: 'input2' },
-                    { name: 'input3', rowStart: true },
-                ],
+                children: [{ name: 'input', rowStart: true }, { name: 'input2' }, { name: 'input3', rowStart: true }],
                 gutter: GUTTER_SIZE,
             },
         ]);
@@ -183,10 +172,7 @@ describe('formGenerator - useRowSplitFields', () => {
 
         expect(result.current).toEqual([
             {
-                children: [
-                    { name: 'input', rowStart: true, row: { gutter: 6 } },
-                    { name: 'input2', rowEnd: true, row: { gutter: 12 } },
-                ],
+                children: [{ name: 'input', rowStart: true, row: { gutter: 6 } }, { name: 'input2', rowEnd: true, row: { gutter: 12 } }],
                 gutter: 12,
             },
             {

@@ -1,15 +1,22 @@
 import { Select as FormikSelect } from '@jbuschke/formik-antd';
-import map from 'lodash/map';
 import React from 'react';
-
-import { FormField } from '../../types';
 
 const { Option } = FormikSelect;
 
-const Select = ({ options, ...props }: FormField) => {
+interface Options {
+    label: string;
+    value: any;
+}
+
+export interface Props {
+    options: Options[];
+    name: string;
+}
+
+const Select = ({ options, name }: Props) => {
     return (
-        <FormikSelect name={props.name}>
-            {map(options, ({ label, value }) => (
+        <FormikSelect name={name}>
+            {options.map(({ label, value }) => (
                 <Option value={value} key={value}>
                     {label || value}
                 </Option>

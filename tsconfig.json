@@ -7,7 +7,7 @@
     "noUnusedLocals": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "jsx": "react",
     "target": "es5",
     "module": "commonjs",
@@ -30,4 +30,3 @@
   "include": ["src/*"],
   "exclude": ["node_modules", "lib"]
 }
-  

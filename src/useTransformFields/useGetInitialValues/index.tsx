@@ -1,14 +1,16 @@
-import { set } from 'lodash';
+import get from 'lodash/get';
+import set from 'lodash/set';
 import { useMemo } from 'react';
-import { FormField } from '../../types';
+import { FieldDefinition } from '../../types';
 
-const useGetIntialValues = (fields: FormField[]): Record<string, FormField['initialValue']> => {
-    return useMemo(() => {
-        return fields.reduce(
-            (acc, { name, initialValue }) => (initialValue ? set(acc, name, initialValue) : acc),
-            {},
-        );
-    }, [fields]);
-};
+const useGetIntialValues = (fields: FieldDefinition[], initVals: any) =>
+    // @NOTE: sets initialValue based on nested or normal path. You must set undefined for all fields even tho no initial value!
+    useMemo(
+        () =>
+            fields.reduce((acc, { name, initialValue }) => set(acc, name, initialValue || get(initVals, name)), {} as {
+                [key: string]: FieldDefinition['initialValue'];
+            }),
+        [fields],
+    );
 
 export default useGetIntialValues;

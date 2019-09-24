@@ -1,13 +1,10 @@
-import map from 'lodash/map';
 import { useMemo } from 'react';
-
 import { DEFAULT_FORM_GUTTER } from '../../constants';
-import { FormField, FormRow } from '../../types';
+import { FieldDefinition, FormRow } from '../../types';
 
-const useRowSplitFields = (
-    fields: FormField[],
-    formGlobalGutter: number = DEFAULT_FORM_GUTTER,
-): FormRow[] => {
+type FunctionDefinition = (fields: FieldDefinition[], formGlobalGutter?: number) => FormRow[];
+
+const useRowSplitFields: FunctionDefinition = (fields, formGlobalGutter = DEFAULT_FORM_GUTTER) => {
     return useMemo(() => {
         const initialRowState = {
             gutter: formGlobalGutter,
@@ -20,7 +17,7 @@ const useRowSplitFields = (
             openRow = false;
         };
 
-        const addFieldToRow = (field: FormField) => {
+        const addFieldToRow = (field: FieldDefinition) => {
             const { row } = field;
 
             currentRow = {
@@ -35,7 +32,7 @@ const useRowSplitFields = (
         let openRow = false;
         let currentRow: FormRow = { ...initialRowState };
 
-        map(fields, (field, key, collection) => {
+        fields.map((field, key, collection) => {
             const { rowStart, rowEnd } = field;
 
             addFieldToRow(field);
