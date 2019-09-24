@@ -5,10 +5,10 @@ import Row from './components/Row';
 import { FieldDefinition } from './types';
 import { useTransformFields } from './useTransformFields';
 
-export type FormDefinition = FormikConfig<FormikValues> & CustomProps;
-
+export type FormDefinition = Omit<FormikConfig<FormikValues>, 'initialValues'> & CustomProps;
 interface CustomProps {
     fields: FieldDefinition[];
+    initialValues?: FormikConfig<FormikValues>['initialValues'];
     gutter?: number;
 }
 
