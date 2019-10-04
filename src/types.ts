@@ -42,35 +42,31 @@ interface CommonFieldProps {
     custom?: (formikProps: FormikProps<any>) => JSX.Element;
     propMapping?: any;
     name: string;
-
-    fieldProps?: {
-        name?: string;
-    };
 }
 
-export type FieldDefinition = (
-    | { component: 'autocomplete'; fieldProps?: ComponentMappingPros['autocomplete'] }
-    | { component: 'button'; fieldProps?: ComponentMappingPros['button'] }
-    | { component: 'cascader'; fieldProps?: ComponentMappingPros['cascader'] }
-    | { component: 'checkbox'; fieldProps?: ComponentMappingPros['checkbox'] }
-    | { component: 'checkboxGroup'; fieldProps?: ComponentMappingPros['checkboxGroup'] }
-    | { component: 'datePicker'; fieldProps?: ComponentMappingPros['datePicker'] }
-    | { component: 'input'; fieldProps?: ComponentMappingPros['input'] }
-    | { component: 'textArea'; fieldProps?: ComponentMappingPros['textArea'] }
-    | { component: 'inputNumber'; fieldProps?: ComponentMappingPros['inputNumber'] }
-    | { component: 'radio'; fieldProps?: ComponentMappingPros['radio'] }
-    | { component: 'radioGroup'; fieldProps?: ComponentMappingPros['radioGroup'] }
-    | { component: 'rate'; fieldProps?: ComponentMappingPros['rate'] }
-    | { component: 'select'; fieldProps?: ComponentMappingPros['select'] }
-    | { component: 'slider'; fieldProps?: ComponentMappingPros['slider'] }
-    | { component: 'switch'; fieldProps?: ComponentMappingPros['switch'] }
-    | { component: 'timePicker'; fieldProps?: ComponentMappingPros['timePicker'] }
-    | { component: 'transfer'; fieldProps?: ComponentMappingPros['transfer'] }
-    | { component: 'treeSelect'; fieldProps?: ComponentMappingPros['treeSelect'] }
-    | { component: 'textDivider'; fieldProps?: ComponentMappingPros['textDivider'] }
-    | { component: 'custom'; fieldProps?: ComponentMappingPros['custom'] }
-    | { component?: undefined; fieldProps?: ComponentMappingPros[typeof DEFAULT_COMPONENT] }) &
-    CommonFieldProps;
+export type FieldDefinition = CommonFieldProps &
+    (
+        | { component: 'autocomplete'; fieldProps?: ComponentMappingPros['autocomplete'] }
+        | { component: 'button'; fieldProps?: ComponentMappingPros['button'] }
+        | { component: 'cascader'; fieldProps?: ComponentMappingPros['cascader'] }
+        | { component: 'checkbox'; fieldProps?: ComponentMappingPros['checkbox'] }
+        | { component: 'checkboxGroup'; fieldProps?: ComponentMappingPros['checkboxGroup'] }
+        | { component: 'datePicker'; fieldProps?: ComponentMappingPros['datePicker'] }
+        | { component: 'input'; fieldProps?: ComponentMappingPros['input'] }
+        | { component: 'textArea'; fieldProps?: ComponentMappingPros['textArea'] }
+        | { component: 'inputNumber'; fieldProps?: ComponentMappingPros['inputNumber'] }
+        | { component: 'radio'; fieldProps?: ComponentMappingPros['radio'] }
+        | { component: 'radioGroup'; fieldProps?: ComponentMappingPros['radioGroup'] }
+        | { component: 'rate'; fieldProps?: ComponentMappingPros['rate'] }
+        | { component: 'select'; fieldProps?: ComponentMappingPros['select'] }
+        | { component: 'slider'; fieldProps?: ComponentMappingPros['slider'] }
+        | { component: 'switch'; fieldProps?: ComponentMappingPros['switch'] }
+        | { component: 'timePicker'; fieldProps?: ComponentMappingPros['timePicker'] }
+        | { component: 'transfer'; fieldProps?: ComponentMappingPros['transfer'] }
+        | { component: 'treeSelect'; fieldProps?: ComponentMappingPros['treeSelect'] }
+        | { component: 'textDivider'; fieldProps?: ComponentMappingPros['textDivider'] }
+        | { component: 'custom'; fieldProps?: ComponentMappingPros['custom'] }
+        | { component?: undefined; fieldProps?: ComponentMappingPros[typeof DEFAULT_COMPONENT] });
 
 export interface FormRow {
     children: FieldDefinition[];
