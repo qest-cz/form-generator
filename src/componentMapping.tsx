@@ -1,3 +1,5 @@
+import Button, { ButtonProps } from 'antd/lib/button';
+import { FormikProps } from 'formik';
 import {
     AutoComplete,
     AutoCompleteProps,
@@ -28,8 +30,6 @@ import {
     TreeSelect,
     TreeSelectProps,
 } from 'formik-antd';
-import Button, { ButtonProps } from 'antd/lib/button';
-import { FormikProps } from 'formik';
 import React from 'react';
 import Select, { Props as SelectProps } from './components/Select';
 import TextDivider, { Props as TextDividerProps } from './components/TextDivider';

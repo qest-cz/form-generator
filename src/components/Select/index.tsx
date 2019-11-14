@@ -1,5 +1,5 @@
-import { Select as FormikSelect } from 'formik-antd';
 import { SelectProps } from 'antd/lib/select';
+import { Select as FormikSelect } from 'formik-antd';
 import React from 'react';
 
 const { Option } = FormikSelect;

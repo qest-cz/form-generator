@@ -1,3 +1,8 @@
+import { ButtonProps } from 'antd/lib/button';
+import { ColProps } from 'antd/lib/col';
+import { RadioProps } from 'antd/lib/radio';
+import { RowProps } from 'antd/lib/row';
+import { FormikProps } from 'formik';
 import {
     AutoCompleteProps,
     CascaderProps,
@@ -15,11 +20,6 @@ import {
     TransferProps,
     TreeSelectProps,
 } from 'formik-antd';
-import { ButtonProps } from 'antd/lib/button';
-import { ColProps } from 'antd/lib/col';
-import { RadioProps } from 'antd/lib/radio';
-import { RowProps } from 'antd/lib/row';
-import { FormikProps } from 'formik';
 import { Schema } from 'yup';
 import { ComponentMappingPros } from './componentMapping';
 import { DEFAULT_COMPONENT } from './constants';
