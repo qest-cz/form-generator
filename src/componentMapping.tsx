@@ -27,7 +27,7 @@ import {
     TransferProps,
     TreeSelect,
     TreeSelectProps,
-} from '@jbuschke/formik-antd';
+} from 'formik-antd';
 import Button, { ButtonProps } from 'antd/lib/button';
 import { FormikProps } from 'formik';
 import React from 'react';

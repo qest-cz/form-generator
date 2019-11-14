@@ -1,4 +1,4 @@
-import { Select as FormikSelect } from '@jbuschke/formik-antd';
+import { Select as FormikSelect } from 'formik-antd';
 import { SelectProps } from 'antd/lib/select';
 import React from 'react';
 

@@ -14,7 +14,7 @@ import {
     TimePickerProps,
     TransferProps,
     TreeSelectProps,
-} from '@jbuschke/formik-antd';
+} from 'formik-antd';
 import { ButtonProps } from 'antd/lib/button';
 import { ColProps } from 'antd/lib/col';
 import { RadioProps } from 'antd/lib/radio';
