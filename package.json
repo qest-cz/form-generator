@@ -54,8 +54,8 @@
         "typescript": "^3.5.1"
     },
     "dependencies": {
-        "@jbuschke/formik-antd": "^1.0.0",
         "formik": "^1.5.7",
+        "formik-antd": "^1.6.0",
         "lodash": "^4.17.11",
         "styled-components": "^4.4.0",
         "yup": "^0.27.0"
