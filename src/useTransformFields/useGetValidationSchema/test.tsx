@@ -38,7 +38,7 @@ describe('formGenerator - useGetValidationSchema', () => {
 
         const { result } = renderHook(() => useGetValidationSchema(fields));
 
-        expect((result.current as any).fields.input.nested).toBeTruthy();
-        expect((result.current as any).fields.numberInput.nested).toBeFalsy();
+        expect((result.current as any).fields.input.fields.nested).toBeTruthy();
+        expect((result.current as any).fields.numberInput.fields.nested).toBeFalsy();
     });
 });
