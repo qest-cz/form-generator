@@ -18,7 +18,7 @@ describe('formGenerator - useGetInitialValues', () => {
             },
         ];
 
-        const { result } = renderHook(() => useGetIntialValues(fields));
+        const { result } = renderHook(() => useGetIntialValues(fields, {}));
 
         expect(result.current).toEqual({ input: undefined, numberInput: undefined });
     });
@@ -44,7 +44,7 @@ describe('formGenerator - useGetInitialValues', () => {
             },
         ];
 
-        const { result } = renderHook(() => useGetIntialValues(fields));
+        const { result } = renderHook(() => useGetIntialValues(fields, {}));
 
         expect(result.current).toEqual({
             input: 'input',
@@ -63,7 +63,7 @@ describe('formGenerator - useGetInitialValues', () => {
             3,
         ];
 
-        const { result } = renderHook(() => useGetIntialValues(fields as any));
+        const { result } = renderHook(() => useGetIntialValues(fields as any, {}));
 
         expect(result.current).toEqual({
             switch: true,
